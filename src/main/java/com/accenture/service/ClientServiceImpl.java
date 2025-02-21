@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -34,7 +35,18 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientResponseDto> trouverTousClients() {
-        return List.of();
+        return clientDao.findAll().stream()
+                .map(clientMapper::toClientResponseDto)
+                .toList();
+    }
+
+    @Override
+    public ClientResponseDto trouverByEmail(String email) throws EntityNotFoundException {
+        Optional<Client> optClient = clientDao.findByEmail(email);
+        if (optClient.isEmpty())
+            throw new EntityNotFoundException("Ce client n'existe pas");
+        Client client = optClient.get();
+        return clientMapper.toClientResponseDto(client);
     }
 
     private static void verifierClient(ClientRequestDto clientRequestDto) throws ClientException, EntityNotFoundException {
@@ -44,26 +56,24 @@ public class ClientServiceImpl implements ClientService {
             throw new ClientException("Le nom est obligatoire");
         if (clientRequestDto.prenom() == null || clientRequestDto.prenom().isBlank())
             throw new ClientException("Le prenom est obligatoire");
-        if (clientRequestDto.email() == null || clientRequestDto.email().isBlank() )
+        if (clientRequestDto.email() == null || clientRequestDto.email().isBlank())
             throw new ClientException("Le email est obligatoire");
-        if (clientRequestDto.password() == null || clientRequestDto.password().isBlank() )
+        if (clientRequestDto.password() == null || clientRequestDto.password().isBlank())
             throw new ClientException("Le mot de passe est obligatoite");
         if ((clientRequestDto.adresse() == null))
             throw new ClientException("L'adresse est obligatoire");
-        if ((clientRequestDto.adresse().getRue() == null) || clientRequestDto.adresse().getRue().isBlank())
+        if ((clientRequestDto.adresse().rue() == null) || clientRequestDto.adresse().rue().isBlank())
             throw new ClientException("Le nom de la rue est obligatoire");
-        if ((clientRequestDto.adresse().getCodePostal() == null) || clientRequestDto.adresse().getCodePostal().isBlank())
+        if ((clientRequestDto.adresse().codePostal() == null) || clientRequestDto.adresse().codePostal().isBlank())
             throw new ClientException("Le code postale est obligatoire");
-        if ((clientRequestDto.adresse().getVille() == null) || clientRequestDto.adresse().getVille().isBlank())
+        if ((clientRequestDto.adresse().ville() == null) || clientRequestDto.adresse().ville().isBlank())
             throw new ClientException("La ville est obligatoire");
 
-        if (clientRequestDto.dateNaissance() == null || Period.between( clientRequestDto.dateNaissance(), LocalDate.now()).getYears() < 18)
-            throw new ClientException("La date de naissance est obligatoire et le client doit etre majeur");
-
-
+        if (clientRequestDto.dateNaissance() == null)
+            throw new ClientException("La date de naissance est obligatoire ");
+        if (Period.between(clientRequestDto.dateNaissance(), LocalDate.now()).getYears() < 18)
+            throw new ClientException("Vous devez avoir au moin 18 ans, desolé! ");
 
     }
 
-
-}
 }

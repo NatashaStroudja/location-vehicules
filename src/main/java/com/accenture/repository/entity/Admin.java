@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Administrateur extends UtilisateurConnecte {
+public class Admin extends UtilisateurConnecte {
     private String fonction;
 }

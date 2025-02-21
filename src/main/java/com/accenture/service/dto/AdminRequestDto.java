@@ -1,11 +1,11 @@
 package com.accenture.service.dto;
 
-import com.accenture.shared.Permis;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
-import java.time.LocalDate;
-
-public record ClientRequestDto(
+public record AdminRequestDto(
         @NotBlank(message = "Le nom est obligatoire")
         String nom,
 
@@ -20,12 +20,7 @@ public record ClientRequestDto(
                 message = "Le mot de passe doit contenir entre 8 et 16 caractères, avec au moins une majuscule, une minuscule, un chiffre, et un caractère spécial parmi & # @ - _ §")
         String password,
 
-        @NotNull (message = "L'adresse est obligatoire!")
-        AdresseRequestDto adresse,
 
-        @NotNull (message = "La date de naissance est obligatoire!")
-        LocalDate dateNaissance,
-
-        Permis categoriePermis
+        String fonction
 ) {
 }

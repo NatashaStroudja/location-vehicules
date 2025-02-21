@@ -1,9 +1,10 @@
 package com.accenture.repository.entity;
 
-import com.accenture.model.Permis;
+import com.accenture.shared.Permis;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 @Entity
@@ -13,12 +14,17 @@ public class Client extends UtilisateurConnecte{
     @OneToOne(cascade = CascadeType.ALL)
     @Basic(optional = false)
     private Adresse adresse;
+
     @Basic(optional = false)
-    private LocalDate dateDeNaissance;
+    @Column(name = "date_de_naissance")
+    private LocalDate dateNaissance;
+
+    @CreationTimestamp
     @Basic(optional = false)
     private LocalDate dateDInscription;
+
     @Enumerated(EnumType.STRING)
     private Permis categoriePermis;
-    @Basic(optional = false)
-    private Boolean desactive;
+
+    private Boolean desactive = false ;
 }
