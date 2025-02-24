@@ -2,6 +2,7 @@ package com.accenture.repository.entity;
 
 import com.accenture.shared.Permis;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;

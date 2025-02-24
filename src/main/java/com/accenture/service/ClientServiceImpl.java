@@ -44,22 +44,31 @@ public class ClientServiceImpl implements ClientService {
     public ClientResponseDto trouverByEmailEtPassword(String email, String password) throws EntityNotFoundException {
         Optional<Client> optClient = clientDao. findByEmailAndPassword(email, password);
         if (optClient.isEmpty())
-            throw new EntityNotFoundException("Ce client n'existe pas");
+            throw new EntityNotFoundException("Ce mail n'existe pas dans notre basse");
         Client client = optClient.get();
         return clientMapper.toClientResponseDto(client);
     }
 
+
     private static void verifierClient(ClientRequestDto clientRequestDto) throws ClientException, EntityNotFoundException {
+        String emailRegex =  "^[A-Za-z0-9+_.-]+@(.+)$";
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[&@#-_§]).{8,16}$";
         if (clientRequestDto == null)
             throw new ClientException("Le client est nulle");
         if (clientRequestDto.nom() == null || clientRequestDto.nom().isBlank())
             throw new ClientException("Le nom est obligatoire");
         if (clientRequestDto.prenom() == null || clientRequestDto.prenom().isBlank())
             throw new ClientException("Le prenom est obligatoire");
-        if (clientRequestDto.email() == null || clientRequestDto.email().isBlank())
-            throw new ClientException("Le email est obligatoire");
+        if (clientRequestDto.email() == null || clientRequestDto.email().isBlank()|| !clientRequestDto.email().matches(emailRegex))
+            throw new ClientException("Le email est obligatoire et doit etre ecrit en format mail");
+
         if (clientRequestDto.password() == null || clientRequestDto.password().isBlank())
             throw new ClientException("Le mot de passe est obligatoite");
+
+        if  (!clientRequestDto.password().matches(passwordRegex))
+            throw new ClientException("Le mot de passe doit faire entre 8 et 16 caractères, doit comporter obligatoirement au minimum une \n" +
+                    "majuscule, une minuscule, un chiffre et un caractère parmi la liste suivante : & # @ - _ §");
+
         if ((clientRequestDto.adresse() == null))
             throw new ClientException("L'adresse est obligatoire");
         if ((clientRequestDto.adresse().rue() == null) || clientRequestDto.adresse().rue().isBlank())
@@ -75,5 +84,6 @@ public class ClientServiceImpl implements ClientService {
             throw new ClientException("Vous devez avoir au moin 18 ans, desolé! ");
 
     }
+
 
 }

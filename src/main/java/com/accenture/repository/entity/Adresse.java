@@ -1,12 +1,14 @@
 package com.accenture.repository.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
