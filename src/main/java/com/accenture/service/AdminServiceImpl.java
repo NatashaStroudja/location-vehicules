@@ -8,8 +8,9 @@ import com.accenture.service.dto.AdminResponseDto;
 import com.accenture.service.mapper.AdminMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -36,6 +37,15 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.findAll().stream()
                 .map(adminMapper::toAdminResponseDto)
                 .toList();
+    }
+
+    @Override
+    public AdminResponseDto trouverByEmailEtPassword(String email, String password) throws EntityNotFoundException {
+        Optional<Admin> optAdmin = adminDao. findByEmailAndPassword(email, password);
+        if (optAdmin.isEmpty())
+            throw new EntityNotFoundException("Cet administrateur n'existe pas");
+        Admin admin = optAdmin.get();
+        return adminMapper.toAdminResponseDto(admin);
     }
 
     private static void verifierAdmin(AdminRequestDto adminRequestDto) throws AdminException, EntityNotFoundException {

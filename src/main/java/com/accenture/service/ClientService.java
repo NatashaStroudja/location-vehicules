@@ -10,5 +10,5 @@ import java.util.List;
 public interface ClientService {
     ClientResponseDto ajouterClient(ClientRequestDto clientRequestDto) throws ClientException;
     List<ClientResponseDto> trouverTousClients();
-    ClientResponseDto trouverByEmail(String email);
+    ClientResponseDto trouverByEmailEtPassword(String email, String password);
 }

@@ -30,9 +30,11 @@ public class ClientController {
     List<ClientResponseDto> listeDesClients() {
         return clientService.trouverTousClients();
     }
-    @GetMapping("/{email}")
-    ResponseEntity<ClientResponseDto> clientTrouve(@PathVariable("email") String email){
-        ClientResponseDto trouve = clientService.trouverByEmail(email);
+    @GetMapping("/infos")
+    ResponseEntity<ClientResponseDto> clientTrouveParEmailEtPassword(
+        @RequestParam String email,
+        @RequestParam String password){
+        ClientResponseDto trouve = clientService.trouverByEmailEtPassword(email, password);
         return ResponseEntity.ok(trouve);
     }
 }

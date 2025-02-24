@@ -41,8 +41,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientResponseDto trouverByEmail(String email) throws EntityNotFoundException {
-        Optional<Client> optClient = clientDao.findByEmail(email);
+    public ClientResponseDto trouverByEmailEtPassword(String email, String password) throws EntityNotFoundException {
+        Optional<Client> optClient = clientDao. findByEmailAndPassword(email, password);
         if (optClient.isEmpty())
             throw new EntityNotFoundException("Ce client n'existe pas");
         Client client = optClient.get();

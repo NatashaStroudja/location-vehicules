@@ -3,6 +3,7 @@ package com.accenture.controller;
 import com.accenture.service.AdminService;
 import com.accenture.service.dto.AdminRequestDto;
 import com.accenture.service.dto.AdminResponseDto;
+import com.accenture.service.dto.ClientResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,13 @@ public class AdminController {
     @GetMapping
     List<AdminResponseDto> listeDesAdmins() {
         return adminService.trouverTousAdmins();
+    }
+
+    @GetMapping("/infos")
+    ResponseEntity<AdminResponseDto> adminTrouveParEmailEtPassword(
+            @RequestParam String email,
+            @RequestParam String password){
+        AdminResponseDto trouve = adminService.trouverByEmailEtPassword(email, password);
+        return ResponseEntity.ok(trouve);
     }
 }
