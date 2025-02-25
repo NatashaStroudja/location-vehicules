@@ -82,7 +82,6 @@ public class ClientServiceImpl implements ClientService {
             throw new ClientException("La date de naissance est obligatoire ");
         if (Period.between(clientRequestDto.dateNaissance(), LocalDate.now()).getYears() < 18)
             throw new ClientException("Vous devez avoir au moin 18 ans, desolé! ");
-
     }
 
 

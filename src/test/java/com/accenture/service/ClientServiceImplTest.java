@@ -22,6 +22,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -122,7 +123,7 @@ class ClientServiceImplTest {
 
     @DisplayName("si adresse est null")
     @Test
-    void testAjouterClientSansAdresse(){
+    void testAjouterClientSansAdresse() {
         ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", null, LocalDate.of(1975, 12, 12), Permis.A);
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
@@ -179,7 +180,7 @@ class ClientServiceImplTest {
     @DisplayName("si le client est majeur")
     @Test
     void testAjouterClientMineur() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123§HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(2024,9,9), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123§HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(2024, 9, 9), Permis.A);
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
@@ -191,27 +192,27 @@ class ClientServiceImplTest {
         client.setPrenom("Franz");
         client.setEmail("chateau@praga.ch");
         client.setPassword("Jaipeur2monPere§");
-       Adresse adresse = new Adresse(1, "1 rue du Pont", "310987", "Prague");
+        Adresse adresse = new Adresse(1, "1 rue du Pont", "310987", "Prague");
         client.setAdresse(adresse);
-        client.setDateNaissance( LocalDate.of(1883, 7, 3));
+        client.setDateNaissance(LocalDate.of(1883, 7, 3));
         client.setDateDInscription(LocalDate.now());
         client.setCategoriePermis(Permis.A);
         client.setDesactive(true);
         return client;
     }
 
-    public static ClientResponseDto creerClientResponseDto(){
-        AdresseResponseDto adresse = new AdresseResponseDto (1, "1 rue du Pont", "310987", "Prague");
-        return new ClientResponseDto(1,"Kafka", "Franz", "chateau@praga.ch",
+    public static ClientResponseDto creerClientResponseDto() {
+        AdresseResponseDto adresse = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
+        return new ClientResponseDto(1, "Kafka", "Franz", "chateau@praga.ch",
                 adresse, LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
     }
 
     @DisplayName("si ajouterClient(ClientRequestDto ok), alors save et renvoie un clientResponseDto")
     @Test
     void testAjouterClient() {
-        AdresseRequestDto adresse = new AdresseRequestDto ("1 rue du Pont", "310987", "Prague");
+        AdresseRequestDto adresse = new AdresseRequestDto("1 rue du Pont", "310987", "Prague");
         ClientRequestDto clientRequestDto = new ClientRequestDto("Kafka", "Franz", "chateau@praga.ch",
-                "Jaipeur2monPere§",  adresse, LocalDate.of(1883, 7, 3), Permis.A);
+                "Jaipeur2monPere§", adresse, LocalDate.of(1883, 7, 3), Permis.A);
         Client clientAvantEnreg = creerClient();
         clientAvantEnreg.setId(1);
 
@@ -228,26 +229,64 @@ class ClientServiceImplTest {
 
     @DisplayName("test la methode trouverByEmailEtPassword(String email, String password) si email n'existe pas")
     @Test
-    void testTrouverByEmailExistePas(){
+    void testTrouverByEmailExistePas() {
         Mockito.when(clientDaoMock.findByEmailAndPassword("catsfarm@mail.ru", "fghfjfhjfjh")).thenReturn(Optional.empty());
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, ()->service.trouverByEmailEtPassword("catsfarm@mail.ru", "fghfjfhjfjh"));
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> service.trouverByEmailEtPassword("catsfarm@mail.ru", "fghfjfhjfjh"));
         assertEquals("Ce mail n'existe pas dans notre base de données", exception.getMessage());
 
     }
+
     @DisplayName("test la methode trouverByEmailEtPassword(String email, String password) si email existe ")
     @Test
-    void testTrouverByEmailExiste(){
+    void testTrouverByEmailExiste() {
         Client client = creerClient();
         Optional<Client> optClient = Optional.of(client);
-        Mockito.when(clientDaoMock.findByEmailAndPassword("chateau@praga.ch","Jaipeur2monPere§")).thenReturn(optClient);
+        Mockito.when(clientDaoMock.findByEmailAndPassword("chateau@praga.ch", "Jaipeur2monPere§")).thenReturn(optClient);
 
-        AdresseResponseDto adresseResponseDto = new AdresseResponseDto(1,"1 rue du Pont", "310987", "Prague");
+        AdresseResponseDto adresseResponseDto = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
         ClientResponseDto dto = new ClientResponseDto(
                 1, "Kafka", "Franz", "chateau@praga.ch", adresseResponseDto,
-                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);;
+                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+        ;
 
         Mockito.when(clientMapperMock.toClientResponseDto(client)).thenReturn(dto);
-        assertSame(dto, service.trouverByEmailEtPassword("chateau@praga.ch","Jaipeur2monPere§"));
+        assertSame(dto, service.trouverByEmailEtPassword("chateau@praga.ch", "Jaipeur2monPere§"));
+    }
+
+    private static Client creerClientAutre() {
+        Client client = new Client();
+        client.setId(2);
+        client.setNom("Pitt");
+        client.setPrenom("Brad");
+        client.setEmail("JohnnySuede@tut.by");
+        client.setPassword("LaVieEtBelle1§");
+        Adresse adresse = new Adresse(2, "1 rue de la Joie", "250000", "Minsk");
+        client.setAdresse(adresse);
+        client.setDateNaissance(LocalDate.of(1963, 12, 18));
+        client.setDateDInscription(LocalDate.now());
+        client.setCategoriePermis(Permis.A);
+        client.setDesactive(true);
+        return client;
+    }
+
+    @DisplayName("test trouverTousClients qui renvoie la list de tous les clients de la base de données")
+    @Test
+    void testTrouverTous() {
+        Client client = creerClient();
+        Client clientAutre = creerClientAutre();
+        List<Client> clients = List.of(creerClient(), creerClientAutre());
+        AdresseResponseDto adresseResponseDto = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
+        ClientResponseDto clientResponseDto = new ClientResponseDto(1, "Kafka", "Franz", "chateau@praga.ch", adresseResponseDto,
+                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+        AdresseResponseDto adresseResponseDtoAutre = new AdresseResponseDto(2, "1 rue de la Joie", "250000", "Minsk");
+        ClientResponseDto clientResponseDtoAutre = new ClientResponseDto(2, "Pitt", "Brad", "JohnnySuede@tut.by", adresseResponseDtoAutre,
+                LocalDate.of(1963, 12, 18), LocalDate.now(), Permis.A, true);
+   List<ClientResponseDto> dtos = List.of(clientResponseDto, clientResponseDtoAutre);
+
+   Mockito.when(clientDaoMock.findAll()).thenReturn(clients);
+   Mockito.when(clientMapperMock.toClientResponseDto(client)).thenReturn(clientResponseDto);
+   Mockito.when(clientMapperMock.toClientResponseDto(clientAutre)).thenReturn(clientResponseDtoAutre);
+   assertEquals(dtos, service.trouverTousClients());
     }
 
 }
