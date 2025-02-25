@@ -44,7 +44,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientResponseDto trouverByEmailEtPassword(String email, String password) throws EntityNotFoundException {
         Optional<Client> optClient = clientDao. findByEmailAndPassword(email, password);
         if (optClient.isEmpty())
-            throw new EntityNotFoundException("Ce mail n'existe pas dans notre basse");
+            throw new EntityNotFoundException("Ce mail n'existe pas dans notre base de données");
         Client client = optClient.get();
         return clientMapper.toClientResponseDto(client);
     }

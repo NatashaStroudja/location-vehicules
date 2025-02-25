@@ -231,17 +231,23 @@ class ClientServiceImplTest {
     void testTrouverByEmailExistePas(){
         Mockito.when(clientDaoMock.findByEmailAndPassword("catsfarm@mail.ru", "fghfjfhjfjh")).thenReturn(Optional.empty());
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, ()->service.trouverByEmailEtPassword("catsfarm@mail.ru", "fghfjfhjfjh"));
-        assertEquals("L'id non present", exception.getMessage());
+        assertEquals("Ce mail n'existe pas dans notre base de données", exception.getMessage());
 
     }
-/*Optional<Client> optClient = Optional.of(client);
+    @DisplayName("test la methode trouverByEmailEtPassword(String email, String password) si email existe ")
+    @Test
+    void testTrouverByEmailExiste(){
+        Client client = creerClient();
+        Optional<Client> optClient = Optional.of(client);
+        Mockito.when(clientDaoMock.findByEmailAndPassword("chateau@praga.ch","Jaipeur2monPere§")).thenReturn(optClient);
+
         AdresseResponseDto adresseResponseDto = new AdresseResponseDto(1,"1 rue du Pont", "310987", "Prague");
         ClientResponseDto dto = new ClientResponseDto(
                 1, "Kafka", "Franz", "chateau@praga.ch", adresseResponseDto,
-                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);;
 
         Mockito.when(clientMapperMock.toClientResponseDto(client)).thenReturn(dto);
+        assertSame(dto, service.trouverByEmailEtPassword("chateau@praga.ch","Jaipeur2monPere§"));
+    }
 
-        assertSame(dto, service.trouverByEmailEtPassword(1));
- */
 }
