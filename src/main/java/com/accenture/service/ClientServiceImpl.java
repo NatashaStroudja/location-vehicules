@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Service
 public class ClientServiceImpl implements ClientService {
+    public static final String ID_NON_PRESENT = "Ce id n'existe pas!";
     private final ClientDao clientDao;
     private final ClientMapper clientMapper;
 
@@ -84,5 +85,11 @@ public class ClientServiceImpl implements ClientService {
             throw new ClientException("Vous devez avoir au moin 18 ans, desolé! ");
     }
 
-
+    @Override
+    public void supprimer(int id) throws EntityNotFoundException {
+        if (clientDao.existsById(id))
+            clientDao.deleteById(id);
+        else
+            throw new EntityNotFoundException(ID_NON_PRESENT);
+    }
 }

@@ -281,12 +281,29 @@ class ClientServiceImplTest {
         AdresseResponseDto adresseResponseDtoAutre = new AdresseResponseDto(2, "1 rue de la Joie", "250000", "Minsk");
         ClientResponseDto clientResponseDtoAutre = new ClientResponseDto(2, "Pitt", "Brad", "JohnnySuede@tut.by", adresseResponseDtoAutre,
                 LocalDate.of(1963, 12, 18), LocalDate.now(), Permis.A, true);
-   List<ClientResponseDto> dtos = List.of(clientResponseDto, clientResponseDtoAutre);
+        List<ClientResponseDto> dtos = List.of(clientResponseDto, clientResponseDtoAutre);
 
-   Mockito.when(clientDaoMock.findAll()).thenReturn(clients);
-   Mockito.when(clientMapperMock.toClientResponseDto(client)).thenReturn(clientResponseDto);
-   Mockito.when(clientMapperMock.toClientResponseDto(clientAutre)).thenReturn(clientResponseDtoAutre);
-   assertEquals(dtos, service.trouverTousClients());
+        Mockito.when(clientDaoMock.findAll()).thenReturn(clients);
+        Mockito.when(clientMapperMock.toClientResponseDto(client)).thenReturn(clientResponseDto);
+        Mockito.when(clientMapperMock.toClientResponseDto(clientAutre)).thenReturn(clientResponseDtoAutre);
+        assertEquals(dtos, service.trouverTousClients());
+    }
+
+    @DisplayName("tesr de la methode supprimer(id) si l'id n'existe pas")
+    @Test
+    void testSupprimerClientNonExist() {
+        int id = 99;
+        Mockito.when(clientDaoMock.existsById(99)).thenReturn(false);
+        EntityNotFoundException exception =  assertThrows(EntityNotFoundException.class, () -> service.supprimer(id));
+        assertEquals("Ce id n'existe pas!", exception.getMessage());
+    }
+    @DisplayName("test de la methode supprimer(id) si l'id existe ")
+    @Test
+    void testSupprimerClientExist() {
+        Mockito.when(clientDaoMock.existsById(1)).thenReturn(true);
+        service.supprimer(1);
+        Mockito.verify(clientDaoMock, Mockito.times(1)).deleteById(1);
+
     }
 
 }
