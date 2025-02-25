@@ -37,4 +37,10 @@ public class ClientController {
         ClientResponseDto trouve = clientService.trouverByEmailEtPassword(email, password);
         return ResponseEntity.ok(trouve);
     }
+    @DeleteMapping ("/{id}")
+    ResponseEntity<Void> suppr(@PathVariable("id") int id){
+        clientService.supprimer(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }
