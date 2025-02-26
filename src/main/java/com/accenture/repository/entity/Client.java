@@ -2,17 +2,17 @@ package com.accenture.repository.entity;
 
 import com.accenture.shared.Permis;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 public class Client extends UtilisateurConnecte{
     @OneToOne(cascade = CascadeType.ALL)
     @Basic(optional = false)
@@ -27,7 +27,8 @@ public class Client extends UtilisateurConnecte{
     private LocalDate dateDInscription;
 
     @Enumerated(EnumType.STRING)
-    private Permis categoriePermis;
+    private List<Permis> categoriePermis;
 
+    @Basic(optional = false)
     private Boolean desactive = false ;
 }

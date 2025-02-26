@@ -4,6 +4,7 @@ import com.accenture.shared.Permis;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record ClientRequestDto(
         @NotBlank(message = "Le nom est obligatoire")
@@ -23,9 +24,10 @@ public record ClientRequestDto(
         @NotNull (message = "L'adresse est obligatoire!")
         AdresseRequestDto adresse,
 
-        @NotNull (message = "La date de naissance est obligatoire!")
+        @NotNull
+        @Past(message = "La date de naissance est obligatoire!")
         LocalDate dateNaissance,
 
-        Permis categoriePermis
+        List<Permis> categoriePermis
 ) {
 }

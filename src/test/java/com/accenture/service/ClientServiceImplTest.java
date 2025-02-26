@@ -49,70 +49,70 @@ class ClientServiceImplTest {
     @DisplayName("si le nom est null")
     @Test
     void testAjouterClientSansNom() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto(null, "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto(null, "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le nom est blank")
     @Test
     void testAjouterClientNomBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("\t", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("\t", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le prenom est null")
     @Test
     void testAjouterClientSansPrenom() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", null, "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", null, "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le prenom est blank")
     @Test
     void testAjouterClientPrenomBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "\t", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "\t", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le email est null")
     @Test
     void testAjouterClientSansEmail() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", null, "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", null, "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le email est blank")
     @Test
     void testAjouterClientEmailBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "\t", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "\t", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si l'email ne correspond pas au format email")
     @Test
     void testAjouterClientEmailFormatMauvais() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe", "fGhjkJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe", "fGhjkJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le password est null")
     @Test
     void testAjouterClientSansPassword() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", null, new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", null, new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le password est blank")
     @Test
     void testAjouterClientPasswordBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "\t", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "\t", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A)) ;
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le password n'est pas valide")
     @Test
     void testAjouterClientPasswordNotValide() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fghjkdfgh", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fghjkdfgh", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
@@ -120,63 +120,63 @@ class ClientServiceImplTest {
     @DisplayName("si adresse est null")
     @Test
     void testAjouterClientSansAdresse() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", null, LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", null, LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si la rue est null")
     @Test
     void testAjouterClientSansRue() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto(null, "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto(null, "44000", "Nantes"), LocalDate.of(1975, 12, 12),List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si la rue est blank")
     @Test
     void testAjouterClientRueBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("\t", "44000", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("\t", "44000", "Nantes"), LocalDate.of(1975, 12, 12), List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si code postal est null")
     @Test
     void testAjouterClientSansCodePostal() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", null, "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", null, "Nantes"), LocalDate.of(1975, 12, 12), List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si code postal est blank")
     @Test
     void testAjouterClientCodePostalBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "\t", "Nantes"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "\t", "Nantes"), LocalDate.of(1975, 12, 12), List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si la ville est null")
     @Test
     void testAjouterClientSansVille() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", null), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", null), LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si la ville est blank")
     @Test
     void testAjouterClientVilleBlank() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "\t"), LocalDate.of(1975, 12, 12), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "\t"), LocalDate.of(1975, 12, 12),List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si la date de naissance est null")
     @Test
     void testAjouterClientSansDateNaissance() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), null, Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123!HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), null,List.of(Permis.A) );
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
     @DisplayName("si le client est majeur")
     @Test
     void testAjouterClientMineur() {
-        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123§HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(2024, 9, 9), Permis.A);
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Legrand", "Joe", "joe@tut.by", "fGhjk123§HJ", new AdresseRequestDto("rue du Soleil", "44000", "Nantes"), LocalDate.of(2024, 9, 9),List.of(Permis.A));
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
@@ -185,7 +185,7 @@ class ClientServiceImplTest {
     void testAjouterClient() {
         AdresseRequestDto adresse = new AdresseRequestDto("1 rue du Pont", "310987", "Prague");
         ClientRequestDto clientRequestDto = new ClientRequestDto("Kafka", "Franz", "chateau@praga.ch",
-                "Jaipeur2monPere§", adresse, LocalDate.of(1883, 7, 3), Permis.A);
+                "Jaipeur2monPere§", adresse, LocalDate.of(1883, 7, 3), List.of(Permis.A));
         Client clientAvantEnreg = creerClient();
         clientAvantEnreg.setId(1);
 
@@ -219,7 +219,7 @@ class ClientServiceImplTest {
         AdresseResponseDto adresseResponseDto = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
         ClientResponseDto dto = new ClientResponseDto(
                 1, "Kafka", "Franz", "chateau@praga.ch", adresseResponseDto,
-                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+                LocalDate.of(1883, 7, 3), LocalDate.now(),List.of(Permis.A));
         ;
 
         Mockito.when(clientMapperMock.toClientResponseDto(client)).thenReturn(dto);
@@ -234,10 +234,10 @@ class ClientServiceImplTest {
         List<Client> clients = List.of(creerClient(), creerClientAutre());
         AdresseResponseDto adresseResponseDto = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
         ClientResponseDto clientResponseDto = new ClientResponseDto(1, "Kafka", "Franz", "chateau@praga.ch", adresseResponseDto,
-                LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+                LocalDate.of(1883, 7, 3), LocalDate.now(),List.of(Permis.A) );
         AdresseResponseDto adresseResponseDtoAutre = new AdresseResponseDto(2, "1 rue de la Joie", "250000", "Minsk");
         ClientResponseDto clientResponseDtoAutre = new ClientResponseDto(2, "Pitt", "Brad", "JohnnySuede@tut.by", adresseResponseDtoAutre,
-                LocalDate.of(1963, 12, 18), LocalDate.now(), Permis.A, true);
+                LocalDate.of(1963, 12, 18), LocalDate.now(), List.of(Permis.A));
         List<ClientResponseDto> dtos = List.of(clientResponseDto, clientResponseDtoAutre);
 
         Mockito.when(clientDaoMock.findAll()).thenReturn(clients);
@@ -268,7 +268,7 @@ class ClientServiceImplTest {
     void testModifPartielIdExistPas() {
         Mockito.when(clientDaoMock.findById(99)).thenReturn(Optional.empty());
         ClientRequestDto clientRequestDto = new ClientRequestDto("Dichillo", "Tom", "tommy@tut.by", "234DFGHh§", new AdresseRequestDto("rue de la paix", "44400", "Rezé"),
-                LocalDate.of(1953, 8, 14), Permis.B);
+                LocalDate.of(1953, 8, 14),List.of(Permis.B));
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> service.modifierPartiellement(99, clientRequestDto));
         assertEquals("Ce id n'existe pas!", exception.getMessage());
     }
@@ -299,6 +299,7 @@ class ClientServiceImplTest {
 
     }
 
+
     private static Client creerClient() {
         Client client = new Client();
         client.setId(1);
@@ -310,7 +311,7 @@ class ClientServiceImplTest {
         client.setAdresse(adresse);
         client.setDateNaissance(LocalDate.of(1883, 7, 3));
         client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(Permis.A);
+        client.setCategoriePermis(List.of(Permis.A));
         client.setDesactive(true);
         return client;
     }
@@ -326,7 +327,7 @@ class ClientServiceImplTest {
         client.setAdresse(adresse);
         client.setDateNaissance(LocalDate.of(1963, 12, 18));
         client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(Permis.A);
+        client.setCategoriePermis(List.of(Permis.A));
         client.setDesactive(true);
         return client;
     }
@@ -334,12 +335,12 @@ class ClientServiceImplTest {
     public static ClientResponseDto creerClientResponseDto() {
         AdresseResponseDto adresse = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
         return new ClientResponseDto(1, "Tolstoj", "Franz", "chateau@praga.ch",
-                adresse, LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+                adresse, LocalDate.of(1883, 7, 3), LocalDate.now(), List.of(Permis.A));
     }
 
     public static ClientRequestDto creerClientRequestDto() {
         AdresseRequestDto adresse = new AdresseRequestDto("1 rue du Pont", "310987", "Prague");
-        return new ClientRequestDto("Kafka", "Franz", "chateau@praga.ch", "Jaipeur2monPere§", adresse, LocalDate.of(1883, 7, 3), Permis.A);
+        return new ClientRequestDto("Kafka", "Franz", "chateau@praga.ch", "Jaipeur2monPere§", adresse, LocalDate.of(1883, 7, 3), List.of(Permis.A));
     }
 
     public static Client creerClientNouveauNom() {
@@ -353,7 +354,7 @@ class ClientServiceImplTest {
         client.setAdresse(adresse);
         client.setDateNaissance(LocalDate.of(1883, 7, 3));
         client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(Permis.A);
+        client.setCategoriePermis(List.of(Permis.A));
         client.setDesactive(true);
         return client;
     }

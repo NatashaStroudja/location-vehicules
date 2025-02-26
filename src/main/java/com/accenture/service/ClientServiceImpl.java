@@ -2,11 +2,9 @@ package com.accenture.service;
 
 import com.accenture.exception.ClientException;
 import com.accenture.repository.ClientDao;
-import com.accenture.repository.entity.Adresse;
 import com.accenture.repository.entity.Client;
 import com.accenture.service.dto.ClientRequestDto;
 import com.accenture.service.dto.ClientResponseDto;
-import com.accenture.service.mapper.AdresseMapper;
 import com.accenture.service.mapper.ClientMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -52,7 +50,25 @@ public class ClientServiceImpl implements ClientService {
         Client client = optClient.get();
         return clientMapper.toClientResponseDto(client);
     }
+    @Override
+    public void supprimer(int id) throws EntityNotFoundException {
+        if (clientDao.existsById(id))
+            clientDao.deleteById(id);
+        else
+            throw new EntityNotFoundException(ID_NON_PRESENT);
+    }
 
+    @Override
+    public ClientResponseDto modifierPartiellement(int id, ClientRequestDto clientRequestDto) throws ClientException {
+        Optional<Client> optClient = clientDao.findById(id);
+        if (optClient.isEmpty())
+            throw new EntityNotFoundException(ID_NON_PRESENT);
+        Client clientExist = optClient.get();//on prend le client trouve
+        Client nouveauClient = clientMapper.toClient(clientRequestDto);//on cree le nouveau clientRequestDto et on le transforme en nouveau client
+        remplacer(clientExist, nouveauClient);
+        Client clientEnger = clientDao.save(clientExist);//on enregistre ce client
+        return clientMapper.toClientResponseDto(clientEnger);// on transforme le client enregistre en clientResponseDto
+    }
 
     private static void verifierClient(ClientRequestDto clientRequestDto) throws ClientException, EntityNotFoundException {
         String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
@@ -88,25 +104,7 @@ public class ClientServiceImpl implements ClientService {
             throw new ClientException("Vous devez avoir au moin 18 ans, desolé! ");
     }
 
-    @Override
-    public void supprimer(int id) throws EntityNotFoundException {
-        if (clientDao.existsById(id))
-            clientDao.deleteById(id);
-        else
-            throw new EntityNotFoundException(ID_NON_PRESENT);
-    }
 
-    @Override
-    public ClientResponseDto modifierPartiellement(int id, ClientRequestDto clientRequestDto) throws ClientException {
-        Optional<Client> optClient = clientDao.findById(id);
-        if (optClient.isEmpty())
-            throw new EntityNotFoundException(ID_NON_PRESENT);
-        Client clientExist = optClient.get();//on prend le client trouve
-        Client nouveauClient = clientMapper.toClient(clientRequestDto);//on cree le nouveau clientRequestDto et on le transforme en nouveau client
-        remplacer(clientExist, nouveauClient);
-        Client clientEnger = clientDao.save(clientExist);//on enregistre ce client
-        return clientMapper.toClientResponseDto(clientEnger);// on transforme le client enregistre en clientResponseDto
-    }
 
     private static void remplacer(Client clientExist, Client nouveauClient) {
         if (nouveauClient == null)
@@ -122,9 +120,9 @@ public class ClientServiceImpl implements ClientService {
         if (nouveauClient.getAdresse() != null){
             if (nouveauClient.getAdresse().getRue() != null)
                 clientExist.getAdresse().setRue(nouveauClient.getAdresse().getRue());
-            else if (nouveauClient.getAdresse().getCodePostal() != null)
+            if (nouveauClient.getAdresse().getCodePostal() != null)
                 clientExist.getAdresse().setCodePostal(nouveauClient.getAdresse().getCodePostal());
-            else if (nouveauClient.getAdresse().getVille() != null)
+            if (nouveauClient.getAdresse().getVille() != null)
                 clientExist.getAdresse().setVille(nouveauClient.getAdresse().getVille());
         }
         if (nouveauClient.getDateNaissance()!= null)
