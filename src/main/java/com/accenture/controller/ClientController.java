@@ -42,5 +42,9 @@ public class ClientController {
         clientService.supprimer(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
+    @PatchMapping("/{id}")
+    ResponseEntity<ClientResponseDto> modifierPartiellement(@PathVariable("id") int id, @RequestBody ClientRequestDto clientRequestDto){
+        ClientResponseDto reponse = clientService.modifierPartiellement(id, clientRequestDto);
+        return ResponseEntity.ok(reponse);
+    }
 }

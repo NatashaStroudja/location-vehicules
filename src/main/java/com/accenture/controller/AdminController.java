@@ -3,6 +3,7 @@ package com.accenture.controller;
 import com.accenture.service.AdminService;
 import com.accenture.service.dto.AdminRequestDto;
 import com.accenture.service.dto.AdminResponseDto;
+import com.accenture.service.dto.ClientRequestDto;
 import com.accenture.service.dto.ClientResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -36,5 +37,15 @@ public class AdminController {
             @RequestParam String password){
         AdminResponseDto trouve = adminService.trouverByEmailEtPassword(email, password);
         return ResponseEntity.ok(trouve);
+    }
+    @DeleteMapping ("/{id}")
+    ResponseEntity<Void> suppr(@PathVariable("id") int id){
+        adminService.supprimer(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    @PatchMapping("/{id}")
+    ResponseEntity<AdminResponseDto> modifierPartiellement(@PathVariable("id") int id, @RequestBody AdminRequestDto adminRequestDto){
+        AdminResponseDto reponse = adminService.modifierPartiellement(id, adminRequestDto);
+        return ResponseEntity.ok(reponse);
     }
 }

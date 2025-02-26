@@ -12,7 +12,6 @@ import com.accenture.service.dto.ClientResponseDto;
 import com.accenture.service.mapper.ClientMapper;
 import com.accenture.shared.Permis;
 import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,9 +37,6 @@ class ClientServiceImplTest {
     @InjectMocks
     ClientServiceImpl service;
 
-    @BeforeEach
-    void init() {
-    }
 
     @DisplayName("""
             Test de la methode ajouter(null) qui doit renvoyer une exception lors que le client n'existe pas
@@ -184,29 +180,6 @@ class ClientServiceImplTest {
         assertThrows(ClientException.class, () -> service.ajouterClient(clientRequestDto));
     }
 
-
-    private static Client creerClient() {
-        Client client = new Client();
-        client.setId(1);
-        client.setNom("Kafka");
-        client.setPrenom("Franz");
-        client.setEmail("chateau@praga.ch");
-        client.setPassword("Jaipeur2monPere§");
-        Adresse adresse = new Adresse(1, "1 rue du Pont", "310987", "Prague");
-        client.setAdresse(adresse);
-        client.setDateNaissance(LocalDate.of(1883, 7, 3));
-        client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(Permis.A);
-        client.setDesactive(true);
-        return client;
-    }
-
-    public static ClientResponseDto creerClientResponseDto() {
-        AdresseResponseDto adresse = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
-        return new ClientResponseDto(1, "Kafka", "Franz", "chateau@praga.ch",
-                adresse, LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
-    }
-
     @DisplayName("si ajouterClient(ClientRequestDto ok), alors save et renvoie un clientResponseDto")
     @Test
     void testAjouterClient() {
@@ -253,22 +226,6 @@ class ClientServiceImplTest {
         assertSame(dto, service.trouverByEmailEtPassword("chateau@praga.ch", "Jaipeur2monPere§"));
     }
 
-    private static Client creerClientAutre() {
-        Client client = new Client();
-        client.setId(2);
-        client.setNom("Pitt");
-        client.setPrenom("Brad");
-        client.setEmail("JohnnySuede@tut.by");
-        client.setPassword("LaVieEtBelle1§");
-        Adresse adresse = new Adresse(2, "1 rue de la Joie", "250000", "Minsk");
-        client.setAdresse(adresse);
-        client.setDateNaissance(LocalDate.of(1963, 12, 18));
-        client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(Permis.A);
-        client.setDesactive(true);
-        return client;
-    }
-
     @DisplayName("test trouverTousClients qui renvoie la list de tous les clients de la base de données")
     @Test
     void testTrouverTous() {
@@ -289,21 +246,116 @@ class ClientServiceImplTest {
         assertEquals(dtos, service.trouverTousClients());
     }
 
-    @DisplayName("tesr de la methode supprimer(id) si l'id n'existe pas")
+    @DisplayName("test de la methode supprimer(id) si l'id n'existe pas")
     @Test
     void testSupprimerClientNonExist() {
         int id = 99;
         Mockito.when(clientDaoMock.existsById(99)).thenReturn(false);
-        EntityNotFoundException exception =  assertThrows(EntityNotFoundException.class, () -> service.supprimer(id));
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> service.supprimer(id));
         assertEquals("Ce id n'existe pas!", exception.getMessage());
     }
+
     @DisplayName("test de la methode supprimer(id) si l'id existe ")
     @Test
     void testSupprimerClientExist() {
         Mockito.when(clientDaoMock.existsById(1)).thenReturn(true);
         service.supprimer(1);
         Mockito.verify(clientDaoMock, Mockito.times(1)).deleteById(1);
+    }
+
+    @DisplayName("test methode modifierPartiellement(int id, ClientRequestDto clientRequestDto) si le client n'existe pas")
+    @Test
+    void testModifPartielIdExistPas() {
+        Mockito.when(clientDaoMock.findById(99)).thenReturn(Optional.empty());
+        ClientRequestDto clientRequestDto = new ClientRequestDto("Dichillo", "Tom", "tommy@tut.by", "234DFGHh§", new AdresseRequestDto("rue de la paix", "44400", "Rezé"),
+                LocalDate.of(1953, 8, 14), Permis.B);
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> service.modifierPartiellement(99, clientRequestDto));
+        assertEquals("Ce id n'existe pas!", exception.getMessage());
+    }
+
+    @DisplayName("test methode modifierPartiellement(int id, ClientRequestDto clientRequestDto) si le client est null")
+    @Test
+    void testModifPartielClientNull() {
+        Client client = creerClient();
+        Optional<Client> optionalClient = Optional.of(client);
+        Mockito.when(clientDaoMock.findById(2)).thenReturn(optionalClient);
+        Mockito.when(clientMapperMock.toClient(null)).thenReturn(null);
+        assertThrows(ClientException.class, () -> service.modifierPartiellement(2, null));
+    }
+
+    @DisplayName("Test methode modifierPartiellement(int id, ClientRequestDto clientRequestDto) en modifiant nom")
+    @Test
+    void testModifPartielNouveauNom() {
+        Client client = creerClient();
+        Optional<Client> optionalClient = Optional.of(client);
+        Mockito.when(clientDaoMock.findById(1)).thenReturn(optionalClient);
+        ClientRequestDto clientRequestDto = creerClientRequestDto();
+        Mockito.when(clientMapperMock.toClient(clientRequestDto)).thenReturn(client);
+        Client clientNouveauNom = creerClientNouveauNom();
+        ClientResponseDto clientResponseDto = creerClientResponseDto();
+       Mockito.when(clientDaoMock.save(client)).thenReturn(clientNouveauNom);
+        Mockito.when(clientMapperMock.toClientResponseDto(clientNouveauNom)).thenReturn(clientResponseDto);
+        assertEquals(clientResponseDto,  service.modifierPartiellement(1, clientRequestDto) );
 
     }
 
+    private static Client creerClient() {
+        Client client = new Client();
+        client.setId(1);
+        client.setNom("Kafka");
+        client.setPrenom("Franz");
+        client.setEmail("chateau@praga.ch");
+        client.setPassword("Jaipeur2monPere§");
+        Adresse adresse = new Adresse(1, "1 rue du Pont", "310987", "Prague");
+        client.setAdresse(adresse);
+        client.setDateNaissance(LocalDate.of(1883, 7, 3));
+        client.setDateDInscription(LocalDate.now());
+        client.setCategoriePermis(Permis.A);
+        client.setDesactive(true);
+        return client;
+    }
+
+    private static Client creerClientAutre() {
+        Client client = new Client();
+        client.setId(2);
+        client.setNom("Pitt");
+        client.setPrenom("Brad");
+        client.setEmail("JohnnySuede@tut.by");
+        client.setPassword("LaVieEtBelle1§");
+        Adresse adresse = new Adresse(2, "1 rue de la Joie", "250000", "Minsk");
+        client.setAdresse(adresse);
+        client.setDateNaissance(LocalDate.of(1963, 12, 18));
+        client.setDateDInscription(LocalDate.now());
+        client.setCategoriePermis(Permis.A);
+        client.setDesactive(true);
+        return client;
+    }
+
+    public static ClientResponseDto creerClientResponseDto() {
+        AdresseResponseDto adresse = new AdresseResponseDto(1, "1 rue du Pont", "310987", "Prague");
+        return new ClientResponseDto(1, "Tolstoj", "Franz", "chateau@praga.ch",
+                adresse, LocalDate.of(1883, 7, 3), LocalDate.now(), Permis.A, true);
+    }
+
+    public static ClientRequestDto creerClientRequestDto() {
+        AdresseRequestDto adresse = new AdresseRequestDto("1 rue du Pont", "310987", "Prague");
+        return new ClientRequestDto("Kafka", "Franz", "chateau@praga.ch", "Jaipeur2monPere§", adresse, LocalDate.of(1883, 7, 3), Permis.A);
+    }
+
+    public static Client creerClientNouveauNom() {
+        Client client = new Client();
+        client.setId(1);
+        client.setNom("Tolstoj");
+        client.setPrenom("Franz");
+        client.setEmail("chateau@praga.ch");
+        client.setPassword("Jaipeur2monPere§");
+        Adresse adresse = new Adresse(1, "1 rue du Pont", "310987", "Prague");
+        client.setAdresse(adresse);
+        client.setDateNaissance(LocalDate.of(1883, 7, 3));
+        client.setDateDInscription(LocalDate.now());
+        client.setCategoriePermis(Permis.A);
+        client.setDesactive(true);
+        return client;
+    }
+    /*   */
 }
