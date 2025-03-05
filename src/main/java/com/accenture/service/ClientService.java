@@ -15,5 +15,6 @@ public interface ClientService {
     ClientResponseDto trouverByEmailEtPassword(String email, String password);
 
     void supprimer(int id) throws EntityNotFoundException;
+
     ClientResponseDto modifierPartiellement(int id, ClientRequestDto clientRequestDto) throws ClientException;
 }

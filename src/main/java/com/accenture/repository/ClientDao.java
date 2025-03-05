@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface ClientDao extends JpaRepository <Client, Integer> {
     Optional<Client> findByEmailAndPassword(String email, String password);
-void deleteById(int id);
 }

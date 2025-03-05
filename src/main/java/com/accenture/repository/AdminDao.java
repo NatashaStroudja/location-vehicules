@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface AdminDao extends JpaRepository<Admin, Integer> {
     Optional<Admin> findByEmailAndPassword(String email, String password);
-    void deleteById(int id);
 }

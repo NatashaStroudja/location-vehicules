@@ -311,7 +311,7 @@ class ClientServiceImplTest {
         client.setAdresse(adresse);
         client.setDateNaissance(LocalDate.of(1883, 7, 3));
         client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(List.of(Permis.A));
+        client.setPermis(List.of(Permis.A));
         client.setDesactive(true);
         return client;
     }
@@ -327,7 +327,7 @@ class ClientServiceImplTest {
         client.setAdresse(adresse);
         client.setDateNaissance(LocalDate.of(1963, 12, 18));
         client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(List.of(Permis.A));
+        client.setPermis(List.of(Permis.A));
         client.setDesactive(true);
         return client;
     }
@@ -354,7 +354,7 @@ class ClientServiceImplTest {
         client.setAdresse(adresse);
         client.setDateNaissance(LocalDate.of(1883, 7, 3));
         client.setDateDInscription(LocalDate.now());
-        client.setCategoriePermis(List.of(Permis.A));
+        client.setPermis(List.of(Permis.A));
         client.setDesactive(true);
         return client;
     }

@@ -28,6 +28,6 @@ public record ClientRequestDto(
         @Past(message = "La date de naissance est obligatoire!")
         LocalDate dateNaissance,
 
-        List<Permis> categoriePermis
+        List<Permis> permis
 ) {
 }

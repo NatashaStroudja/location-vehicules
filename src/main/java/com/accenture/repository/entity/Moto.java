@@ -1,6 +1,8 @@
 package com.accenture.repository.entity;
 
-import com.accenture.shared.*;
+import com.accenture.shared.Permis;
+import com.accenture.shared.Transmission;
+import com.accenture.shared.TypeMoto;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,33 +12,29 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper=true)
-public class Voiture extends Vehicule{
+public class Moto extends Vehicule {
     @Basic(optional = false)
-   private Integer nombreDePlaces;
-    @Enumerated(EnumType.STRING)
-   private CarburantOuEnergie carburantOuEnergie;
+    private Integer nombreDeCylindres;
     @Basic(optional = false)
-    @Enumerated(EnumType.STRING)
-    private NombreDePortes nombreDePortes;
-
+    private Integer cylindree;
+    @Basic(optional = false)
+    private Double poids;
+    @Basic(optional = false)
+    private Double puissance;
+    @Basic(optional = false)
+    private Double hauteurDeSelle;
     @Basic(optional = false)
     @Enumerated(EnumType.STRING)
     private Transmission transmission;
-    @Basic(optional = false)
-    private Boolean clim;
-    @Basic(optional = false)
-    private Integer nombreDeBagages;
-
     @Enumerated(EnumType.STRING)
-    private TypeVoiture typeVoiture;
-
+    private TypeMoto typeMoto;
     @Enumerated(EnumType.STRING)
     private Permis permis;
-
-
 }

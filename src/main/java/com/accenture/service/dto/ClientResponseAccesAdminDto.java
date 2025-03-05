@@ -13,7 +13,7 @@ public record ClientResponseAccesAdminDto(
         AdresseResponseDto adresseResponseDto,
         LocalDate dateDeNaissance,
         LocalDate dateDInscription,
-        List<Permis> categoriePermis,
+        List<Permis> permis,
         Boolean desactive
 ) {
 

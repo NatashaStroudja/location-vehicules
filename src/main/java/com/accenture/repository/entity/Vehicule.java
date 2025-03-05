@@ -11,11 +11,16 @@ import lombok.NoArgsConstructor;
 public abstract class Vehicule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Basic(optional = false)
     private String marque;
     @Basic(optional = false)
     private String model;
     @Basic(optional = false)
-   private String couleur;
+    private String couleur;
+
+    private Double tarifDeLocationJour;
+    private Double kilometrage;
+    private Boolean actif;
+    private Boolean retireDuPark;
 }

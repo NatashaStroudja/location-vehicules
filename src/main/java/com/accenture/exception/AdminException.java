@@ -1,6 +1,6 @@
 package com.accenture.exception;
 
-public class AdminException extends RuntimeException {
+public class AdminException extends ApplicatifException {
     public AdminException(String message) {
         super(message);
     }

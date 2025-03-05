@@ -27,8 +27,8 @@ public class Client extends UtilisateurConnecte{
     private LocalDate dateDInscription;
 
     @Enumerated(EnumType.STRING)
-    private List<Permis> categoriePermis;
+    private List<Permis> permis;
 
-    @Basic(optional = false)
+
     private Boolean desactive = false ;
 }

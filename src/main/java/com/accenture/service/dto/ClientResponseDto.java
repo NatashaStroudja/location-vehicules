@@ -13,6 +13,6 @@ public record ClientResponseDto(
         AdresseResponseDto adresseResponseDto,
         LocalDate dateDeNaissance,
         LocalDate dateDInscription,
-        List<Permis> categoriePermis
+        List<Permis> permis
 ) {
 }

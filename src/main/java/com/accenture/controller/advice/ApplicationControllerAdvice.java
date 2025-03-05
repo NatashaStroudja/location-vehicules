@@ -1,5 +1,6 @@
 package com.accenture.controller.advice;
 
+import com.accenture.exception.ApplicatifException;
 import com.accenture.exception.ClientException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -13,8 +14,8 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
-    @ExceptionHandler(ClientException.class)
-    public ResponseEntity<ErreurResponse> gestionClientException(ClientException exception) {
+    @ExceptionHandler(ApplicatifException.class)
+    public ResponseEntity<ErreurResponse> gestionApplicatifException(ApplicatifException exception) {
         ErreurResponse er = new ErreurResponse(LocalDateTime.now(), "Erreur functionnelle", exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(er);
     }
