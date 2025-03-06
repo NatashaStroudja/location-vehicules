@@ -1,0 +1,50 @@
+<configuration>
+    <!--  Encodage et pattern commun  -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
+    <!--  Appender pour écrire les logs dans la console  -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!--  Appender pour les logs de Spring Boot et Hibernate  -->
+    <appender name="SPRING_BOOT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/spring-boot.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--  configuration de rotation quotidienne  -->
+            <fileNamePattern>spring-boot.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <!--  Appender pour les logs de votre application  -->
+    <appender name="APPLICATION_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/mon-appli.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--  configuration de rotation quotidienne  -->
+            <fileNamePattern>mon-appli.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <!--  Logger pour Hibernate et Spring  -->
+    <logger name="org.hibernate" level="INFO">
+        <appender-ref ref="SPRING_BOOT_FILE"/>
+    </logger>
+    <logger name="org.springframework" level="INFO">
+        <appender-ref ref="SPRING_BOOT_FILE"/>
+    </logger>
+    <!--  Logger pour votre application  -->
+    <logger name="com.accenture" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APPLICATION_FILE"/>
+    </logger>
+    <!--  Configuration du root logger  -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

@@ -96,17 +96,15 @@ public class AdminServiceImpl implements AdminService {
         if (adminRequestDto.prenom() == null || adminRequestDto.prenom().isBlank())
             throw new AdminException("Le prenom est obligatoire");
         if (adminRequestDto.email() == null || adminRequestDto.email().isBlank() || !adminRequestDto.email().matches(emailRegex))
-            throw new ClientException("Le email est obligatoire et doit etre ecrit en format mail");
-        if (adminRequestDto.password() == null || adminRequestDto.password().isBlank())
-            throw new AdminException("Le mot de passe est obligatoite");
+            throw new AdminException("Le email est obligatoire et doit etre ecrit en format mail");
         if (adminRequestDto.password() == null || adminRequestDto.password().isBlank())
             throw new AdminException("Le mot de passe est obligatoite");
 
         if (!adminRequestDto.password().matches(passwordRegex))
             throw new AdminException("Le mot de passe doit faire entre 8 et 16 caractères, doit comporter obligatoirement au minimum une \n" +
                     "majuscule, une minuscule, un chiffre et un caractère parmi la liste suivante : & # @ - _ §");
-        if (adminRequestDto.fonction() == null || adminRequestDto.fonction().isBlank());
-        throw new AdminException("La fonction est ansente");
+        if (adminRequestDto.fonction() == null || adminRequestDto.fonction().isBlank())
+        throw new AdminException("La fonction est obligatoire");
     }
 
 }

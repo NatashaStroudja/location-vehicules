@@ -3,7 +3,14 @@ package com.accenture.repository.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * Classe abstraite représentant un véhicule dans le système.
+ * Cette classe est la classe mére pour d'autres types de véhicules, comme {@link Voiture}, {@link Moto}, etc.
+ * Elle contient des informations communes à tous les véhicules, telles que la marque, le modèle, la couleur,
+ * le tarif de location journalier, le kilométrage, et le statut actif ou retiré du parc.
+ * Cette classe est mappée à une table unique dans la base de données,
+ * ce qui permet de stocker tous les types de véhicules dans la même table.
+ */
 @Entity
 @Data
 @NoArgsConstructor

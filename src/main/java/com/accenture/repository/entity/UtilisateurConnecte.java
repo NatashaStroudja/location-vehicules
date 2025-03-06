@@ -4,7 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * Classe abstraite représentant un utilisateur connecté dans le système.
+ * Cette classe est la classe mére pour d'autres entités utilisateurs, comme {@link Admin} et {@link Client}.
+ * Elle contient des informations communes à tous les types d'utilisateurs connectés, telles que l'identifiant,
+ * le nom, le prénom, l'email et le mot de passe.
+ * Cette classe est mappée à une table unique dans la base de données,
+ * ce qui permet de stocker tous les utilisateurs (de type Admin, Client, etc.) dans la même table.
+ */
 @Entity
 @Data
 @NoArgsConstructor

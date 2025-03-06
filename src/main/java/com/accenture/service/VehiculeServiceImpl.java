@@ -15,7 +15,7 @@ import com.accenture.service.mapper.MotoMapper;
 import com.accenture.service.mapper.VoitureMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +26,15 @@ public class VehiculeServiceImpl implements VehiculeService {
     private final MotoMapper motoMapper;
     private final VoitureMapper voitureMapper;
     private final LocationDao locationDao;
-    private final LocationMapper locationMapper;
 
 
-    public VehiculeServiceImpl(VehiculeDao vehiculeDao, MotoMapper motoMapper, VoitureMapper voitureMapper, LocationDao locationDao, LocationMapper locationMapper) {
+
+    public VehiculeServiceImpl(VehiculeDao vehiculeDao, MotoMapper motoMapper, VoitureMapper voitureMapper, LocationDao locationDao) {
         this.vehiculeDao = vehiculeDao;
         this.motoMapper = motoMapper;
         this.voitureMapper = voitureMapper;
         this.locationDao = locationDao;
-        this.locationMapper = locationMapper;
+
     }
 
     @Override
@@ -45,7 +45,7 @@ public class VehiculeServiceImpl implements VehiculeService {
 
 
     @Override
-    public VehiculeResponseDto rechercherParDate(LocalDateTime dateDebut, LocalDateTime dateFin) throws VehiculeException{
+    public VehiculeResponseDto rechercherParDate(LocalDate dateDebut, LocalDate dateFin) throws VehiculeException{
         List<Location> locations = locationDao.findAll();
         List<Vehicule> vehiculesIndispo = locations.stream()//prendre les veh indispo
                 .filter(location -> location.getDateDebut().isBefore(dateFin) &&

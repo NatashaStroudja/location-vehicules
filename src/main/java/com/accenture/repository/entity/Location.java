@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Entity
 @Data
@@ -18,11 +19,11 @@ public class Location {
     private Client client;
     @ManyToOne
     private Vehicule vehicule;
-    private LocalDateTime dateDebut;
-    private LocalDateTime dateFin;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private Double kilometrage;
     private Double montantTotal;
-    private LocalDateTime dateDeValidation;
+    private LocalDate dateDeValidation;
     @Enumerated(EnumType.STRING)
     private EtatLocation etatLocation;
 }

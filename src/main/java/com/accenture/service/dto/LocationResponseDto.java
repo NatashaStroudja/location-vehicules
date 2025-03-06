@@ -4,17 +4,17 @@ import com.accenture.repository.entity.Client;
 import com.accenture.repository.entity.Vehicule;
 import com.accenture.shared.EtatLocation;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public record LocationResponseDto(
         long id,
         Client client,
         Vehicule vehicule,
-        LocalDateTime dateDeDebut,
-        LocalDateTime dateDeFin,
+        LocalDate dateDeDebut,
+        LocalDate dateDeFin,
         Double kilometrage,
         Double montantTotal,
-        LocalDateTime dateDeValidation,
+        LocalDate dateDeValidation,
         EtatLocation etatLocation
 ) {
 }
