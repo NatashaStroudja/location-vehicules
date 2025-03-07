@@ -1,0 +1,12 @@
+2025-03-05 17:05:09 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 9728 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-05 17:05:09 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-05 17:05:09 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-05 17:05:16 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 9728 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-05 17:05:16 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-05 17:05:16 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-05 17:05:20 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 5.007 seconds (process running for 89910.044)
+2025-03-05 17:08:21 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 22200 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-05 17:08:21 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-05 17:08:21 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-05 17:08:31 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 10.781 seconds (process running for 12.408)
+2025-03-05 17:08:54 [http-nio-8080-exec-5] INFO  c.a.controller.ClientController - Coucou

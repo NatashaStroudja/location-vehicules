@@ -1,0 +1,71 @@
+2025-03-07 10:32:56 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 22200 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 10:32:56 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 10:32:56 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 10:33:09 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 22200 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 10:33:09 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 10:33:09 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 10:33:12 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 3.229 seconds (process running for 149092.525)
+2025-03-07 10:47:00 [http-nio-8080-exec-1] INFO  c.a.controller.ClientController - Le client modifié avec succès
+2025-03-07 10:49:33 [http-nio-8080-exec-3] INFO  c.a.controller.ClientController - Le client modifié avec succès
+2025-03-07 10:53:59 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 22200 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 10:53:59 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 10:53:59 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 10:54:02 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 2.585 seconds (process running for 150342.678)
+2025-03-07 10:54:18 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 22200 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 10:54:18 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 10:54:18 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 10:54:20 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 2.369 seconds (process running for 150361.132)
+2025-03-07 10:54:22 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 22200 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 10:54:22 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 10:54:22 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 10:54:25 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 3.409 seconds (process running for 150366.214)
+2025-03-07 10:54:33 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 432 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 10:54:33 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 10:54:33 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 10:54:45 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 12.268 seconds (process running for 14.18)
+2025-03-07 11:02:26 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 25332 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 11:02:26 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 11:02:26 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:02:33 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 8.483 seconds (process running for 9.653)
+2025-03-07 11:24:04 [http-nio-8080-exec-1] ERROR c.a.c.a.ApplicationControllerAdvice - Erreur de validation
+2025-03-07 11:27:51 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 26040 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 11:27:51 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 11:27:51 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:28:00 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 10.023 seconds (process running for 11.116)
+2025-03-07 11:28:54 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 31892 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 11:28:54 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 11:28:54 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:29:03 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 9.47 seconds (process running for 10.402)
+2025-03-07 11:33:35 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 5352 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 11:33:35 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 11:33:35 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:33:43 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 8.729 seconds (process running for 9.665)
+2025-03-07 11:34:01 [http-nio-8080-exec-6] ERROR c.a.c.a.ApplicationControllerAdvice - Problème sur le format de l'entrée
+2025-03-07 11:36:33 [http-nio-8080-exec-5] ERROR c.a.c.a.ApplicationControllerAdvice - Problème sur le format de l'entrée
+2025-03-07 11:37:28 [http-nio-8080-exec-10] ERROR c.a.c.a.ApplicationControllerAdvice - Erreur vehicule
+2025-03-07 11:37:54 [http-nio-8080-exec-9] ERROR c.a.c.a.ApplicationControllerAdvice - Problème sur le format de l'entrée
+2025-03-07 11:39:18 [http-nio-8080-exec-1] ERROR c.a.c.a.ApplicationControllerAdvice - Erreur vehicule
+2025-03-07 11:55:16 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 27956 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 11:55:16 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 11:55:16 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 11:55:25 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 9.159 seconds (process running for 10.395)
+2025-03-07 12:01:51 [http-nio-8080-exec-2] INFO  c.a.controller.ClientController - Client ajouté avec succès
+2025-03-07 12:13:41 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 27956 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 12:13:41 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 12:13:41 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 12:13:43 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 1.911 seconds (process running for 1108.926)
+2025-03-07 12:13:45 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 27956 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 12:13:45 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 12:13:45 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 12:13:46 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 1.277 seconds (process running for 1111.724)
+2025-03-07 12:14:21 [http-nio-8080-exec-1] ERROR c.a.c.a.ApplicationControllerAdvice - Mail déja existant
+2025-03-07 12:42:49 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Starting ProjetLocationVehiculesApplication using Java 23.0.1 with PID 37328 (C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules\target\classes started by natallia.krautsova in C:\Users\natallia.krautsova\Desktop\Cours\projet-location-vehicules)
+2025-03-07 12:42:49 [restartedMain] DEBUG c.a.ProjetLocationVehiculesApplication - Running with Spring Boot v3.4.2, Spring v6.2.2
+2025-03-07 12:42:49 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-03-07 12:42:57 [restartedMain] INFO  c.a.ProjetLocationVehiculesApplication - Started ProjetLocationVehiculesApplication in 8.405 seconds (process running for 9.682)
+2025-03-07 12:43:12 [http-nio-8080-exec-1] ERROR c.a.c.a.ApplicationControllerAdvice - Problème sur le format de l'entrée
+2025-03-07 12:44:19 [http-nio-8080-exec-7] ERROR c.a.c.a.ApplicationControllerAdvice - Problème sur le format de l'entrée
+2025-03-07 15:30:14 [http-nio-8080-exec-9] INFO  c.a.controller.ClientController - Affichage des clients
+2025-03-07 15:31:35 [http-nio-8080-exec-1] ERROR c.a.c.a.ApplicationControllerAdvice - Problème sur le format de l'entrée
+2025-03-07 15:33:34 [http-nio-8080-exec-3] INFO  c.a.controller.ClientController - Le client modifié avec succès
+2025-03-07 15:38:51 [http-nio-8080-exec-8] ERROR c.a.c.a.ApplicationControllerAdvice - Mauvaise requête

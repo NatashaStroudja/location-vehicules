@@ -18,7 +18,7 @@ public record VoitureResponseDto(
         CarburantOuEnergie carburantOuEnergie,
         NombreDePortes nombreDePortes,
         Transmission transmission,
-        @Schema(example = "Oui")
+        @Schema(example = "true")
         Boolean clim,
         @Schema(example = "4")
         Integer nombreDeBagages,

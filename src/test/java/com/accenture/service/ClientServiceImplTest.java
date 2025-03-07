@@ -252,7 +252,7 @@ class ClientServiceImplTest {
         int id = 99;
         Mockito.when(clientDaoMock.existsById(99)).thenReturn(false);
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> service.supprimer(id));
-        assertEquals("Ce id n'existe pas!", exception.getMessage());
+        assertEquals("Cet id n'existe pas!", exception.getMessage());
     }
 
     @DisplayName("test de la methode supprimer(id) si l'id existe ")
@@ -270,7 +270,7 @@ class ClientServiceImplTest {
         ClientRequestDto clientRequestDto = new ClientRequestDto("Dichillo", "Tom", "tommy@tut.by", "234DFGHh§", new AdresseRequestDto("rue de la paix", "44400", "Rezé"),
                 LocalDate.of(1953, 8, 14),List.of(Permis.B));
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> service.modifierPartiellement(99, clientRequestDto));
-        assertEquals("Ce id n'existe pas!", exception.getMessage());
+        assertEquals("Cet id n'existe pas!", exception.getMessage());
     }
 
     @DisplayName("test methode modifierPartiellement(int id, ClientRequestDto clientRequestDto) si le client est null")

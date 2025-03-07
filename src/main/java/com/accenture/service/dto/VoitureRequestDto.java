@@ -29,7 +29,7 @@ public record VoitureRequestDto(
         @Schema(example = "AUTO")
         Transmission transmission,
         @NotNull(message = "champ obligatoire")
-        @Schema(example = "Oui")
+        @Schema(example = "true")
         Boolean clim,
         @NotNull(message = "champ obligatoire")
         @Schema(example = "4")
